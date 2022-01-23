@@ -1,0 +1,385 @@
+#pragma version 5
+global GroupSize
+int 3
+==
+gtxn 0 Fee
+global MinTxnFee
+==
+&&
+gtxn 1 Fee
+global MinTxnFee
+==
+&&
+gtxn 2 Fee
+global MinTxnFee
+==
+&&
+gtxn 0 RekeyTo
+global ZeroAddress
+==
+&&
+gtxn 1 RekeyTo
+global ZeroAddress
+==
+&&
+gtxn 2 RekeyTo
+global ZeroAddress
+==
+&&
+gtxn 0 TypeEnum
+int pay
+==
+&&
+gtxn 0 Sender
+addr TMPL_SELLER_ADDRESS
+==
+&&
+gtxn 0 Receiver
+gtxn 0 Receiver
+==
+&&
+gtxn 0 Amount
+int TMPL_INIT_FEE
+==
+&&
+gtxn 0 CloseRemainderTo
+global ZeroAddress
+==
+&&
+gtxn 1 TypeEnum
+int axfer
+==
+&&
+gtxn 1 Sender
+gtxn 0 Receiver
+==
+&&
+gtxn 1 AssetReceiver
+gtxn 0 Receiver
+==
+&&
+gtxn 1 AssetAmount
+int 0
+==
+&&
+gtxn 1 XferAsset
+int TMPL_ASSET_ID
+==
+&&
+gtxn 1 AssetCloseTo
+global ZeroAddress
+==
+&&
+gtxn 2 TypeEnum
+int axfer
+==
+&&
+gtxn 2 Sender
+addr TMPL_SELLER_ADDRESS
+==
+&&
+gtxn 2 AssetReceiver
+gtxn 0 Receiver
+==
+&&
+gtxn 2 AssetAmount
+int 1
+==
+&&
+gtxn 2 XferAsset
+int TMPL_ASSET_ID
+==
+&&
+gtxn 2 AssetCloseTo
+global ZeroAddress
+==
+&&
+bnz main_l6
+global GroupSize
+int 3
+==
+gtxn 0 Fee
+global MinTxnFee
+==
+&&
+gtxn 1 Fee
+global MinTxnFee
+==
+&&
+gtxn 2 Fee
+global MinTxnFee
+==
+&&
+gtxn 0 RekeyTo
+global ZeroAddress
+==
+&&
+gtxn 1 RekeyTo
+global ZeroAddress
+==
+&&
+gtxn 2 RekeyTo
+global ZeroAddress
+==
+&&
+gtxn 0 TypeEnum
+int axfer
+==
+&&
+gtxn 0 Sender
+addr TMPL_SELLER_ADDRESS
+==
+&&
+gtxn 0 AssetReceiver
+addr TMPL_SELLER_ADDRESS
+==
+&&
+gtxn 0 AssetAmount
+int 0
+==
+&&
+gtxn 0 XferAsset
+int TMPL_ASSET_ID
+==
+&&
+gtxn 0 AssetCloseTo
+global ZeroAddress
+==
+&&
+gtxn 1 TypeEnum
+int axfer
+==
+&&
+gtxn 1 Sender
+gtxn 1 Sender
+==
+&&
+gtxn 1 AssetReceiver
+addr TMPL_SELLER_ADDRESS
+==
+&&
+gtxn 1 AssetAmount
+int 1
+==
+&&
+gtxn 1 XferAsset
+int TMPL_ASSET_ID
+==
+&&
+gtxn 1 AssetCloseTo
+addr TMPL_SELLER_ADDRESS
+==
+&&
+gtxn 2 TypeEnum
+int pay
+==
+&&
+gtxn 2 Sender
+gtxn 1 Sender
+==
+&&
+gtxn 2 Receiver
+addr TMPL_SELLER_ADDRESS
+==
+&&
+gtxn 2 Amount
+int 0
+==
+&&
+gtxn 2 CloseRemainderTo
+addr TMPL_SELLER_ADDRESS
+==
+&&
+bnz main_l5
+global GroupSize
+int 6
+==
+gtxn 0 Fee
+global MinTxnFee
+==
+&&
+gtxn 1 Fee
+global MinTxnFee
+==
+&&
+gtxn 2 Fee
+global MinTxnFee
+==
+&&
+gtxn 3 Fee
+global MinTxnFee
+==
+&&
+gtxn 4 Fee
+global MinTxnFee
+==
+&&
+gtxn 5 Fee
+global MinTxnFee
+==
+&&
+gtxn 0 RekeyTo
+global ZeroAddress
+==
+&&
+gtxn 1 RekeyTo
+global ZeroAddress
+==
+&&
+gtxn 2 RekeyTo
+global ZeroAddress
+==
+&&
+gtxn 3 RekeyTo
+global ZeroAddress
+==
+&&
+gtxn 4 RekeyTo
+global ZeroAddress
+==
+&&
+gtxn 5 RekeyTo
+global ZeroAddress
+==
+&&
+gtxn 0 TypeEnum
+int pay
+==
+&&
+gtxn 0 Sender
+gtxn 0 Sender
+==
+&&
+gtxn 0 Receiver
+addr TMPL_SELLER_ADDRESS
+==
+&&
+gtxn 0 Amount
+int TMPL_ASSET_PRICE
+int TMPL_INIT_FEE
++
+==
+&&
+gtxn 0 CloseRemainderTo
+global ZeroAddress
+==
+&&
+gtxn 1 TypeEnum
+int pay
+==
+&&
+gtxn 1 Sender
+gtxn 0 Sender
+==
+&&
+gtxn 1 Receiver
+addr TMPL_PLATFORM_ADDRESS
+==
+&&
+gtxn 1 Amount
+int TMPL_PLATFORM_FEE
+==
+&&
+gtxn 1 CloseRemainderTo
+global ZeroAddress
+==
+&&
+gtxn 2 TypeEnum
+int pay
+==
+&&
+gtxn 2 Sender
+gtxn 0 Sender
+==
+&&
+gtxn 2 Receiver
+addr TMPL_ROYALTY_ADDRESS
+==
+&&
+gtxn 2 Amount
+int TMPL_ROYALTY_FEE
+==
+&&
+gtxn 2 CloseRemainderTo
+global ZeroAddress
+==
+&&
+gtxn 3 TypeEnum
+int axfer
+==
+&&
+gtxn 3 Sender
+gtxn 0 Sender
+==
+&&
+gtxn 3 AssetReceiver
+gtxn 0 Sender
+==
+&&
+gtxn 3 AssetAmount
+int 0
+==
+&&
+gtxn 3 XferAsset
+int TMPL_ASSET_ID
+==
+&&
+gtxn 3 AssetCloseTo
+global ZeroAddress
+==
+&&
+gtxn 4 TypeEnum
+int axfer
+==
+&&
+gtxn 4 Sender
+gtxn 4 Sender
+==
+&&
+gtxn 4 AssetReceiver
+gtxn 0 Sender
+==
+&&
+gtxn 4 AssetAmount
+int 1
+==
+&&
+gtxn 4 XferAsset
+int TMPL_ASSET_ID
+==
+&&
+gtxn 4 AssetCloseTo
+gtxn 0 Sender
+==
+&&
+gtxn 5 TypeEnum
+int pay
+==
+&&
+gtxn 5 Sender
+gtxn 4 Sender
+==
+&&
+gtxn 5 Receiver
+addr TMPL_SELLER_ADDRESS
+==
+&&
+gtxn 5 Amount
+int 0
+==
+&&
+gtxn 5 CloseRemainderTo
+addr TMPL_SELLER_ADDRESS
+==
+&&
+bnz main_l4
+err
+main_l4:
+int 1
+return
+main_l5:
+int 1
+return
+main_l6:
+int 1
+return
