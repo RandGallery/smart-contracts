@@ -2,7 +2,7 @@ import sys
 from pyteal import *
 
 def approval_program(seller_address, platform_address, asset_id, asset_price, platform_fee, init_fee, royalty_address, royalty_fee):
-    # Template vars
+    # Template vars.
     seller_address_tmpl = Tmpl.Addr(seller_address)
     platform_address_tmpl = Tmpl.Addr(platform_address)
     asset_id_tmpl = Tmpl.Int(asset_id)
