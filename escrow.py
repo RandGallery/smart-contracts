@@ -107,14 +107,14 @@ def approval_program(seller_address, platform_address, asset_id, asset_price, pl
             Gtxn[4].asset_receiver() == BUYER,
             Gtxn[4].asset_amount() == Int(1),
             Gtxn[4].xfer_asset() == asset_id_tmpl,
-            Gtxn[4].asset_close_to() == BUYER, #👀
+            Gtxn[4].asset_close_to() == BUYER,
 
             # Escrows refunds seller.
             Gtxn[5].type_enum() == TxnType.Payment,
             Gtxn[5].sender() == ESCROW,
             Gtxn[5].receiver() == seller_address_tmpl,
             Gtxn[5].amount() == Int(0),
-            Gtxn[5].close_remainder_to() == seller_address_tmpl, #👀
+            Gtxn[5].close_remainder_to() == seller_address_tmpl,
         )
 
     """
@@ -139,14 +139,14 @@ def approval_program(seller_address, platform_address, asset_id, asset_price, pl
             Gtxn[1].asset_receiver() == seller_address_tmpl,
             Gtxn[1].asset_amount() == Int(1),
             Gtxn[1].xfer_asset() == asset_id_tmpl,
-            Gtxn[1].asset_close_to() == seller_address_tmpl, #👀
+            Gtxn[1].asset_close_to() == seller_address_tmpl,
             
             # Escrow refunds seller.
             Gtxn[2].type_enum() == TxnType.Payment,
             Gtxn[2].sender() == ESCROW,
             Gtxn[2].receiver() == seller_address_tmpl,
             Gtxn[2].amount() == Int(0),
-            Gtxn[2].close_remainder_to() == seller_address_tmpl, #👀
+            Gtxn[2].close_remainder_to() == seller_address_tmpl,
         )
 
     program = Cond(
