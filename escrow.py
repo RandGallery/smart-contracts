@@ -2,7 +2,7 @@ import sys
 from pyteal import *
 
 """
-Helps people sell 1/1 NFTs.
+Helps people sell 1/1 indivisible NFTs.
 """
 def approval_program(seller_address, platform_address, asset_id, asset_price, platform_fee, init_fee, royalty_address, royalty_fee):
     # Template vars.
