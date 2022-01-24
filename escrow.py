@@ -1,6 +1,9 @@
 import sys
 from pyteal import *
 
+"""
+Helps people sell 1/1 NFTs.
+"""
 def approval_program(seller_address, platform_address, asset_id, asset_price, platform_fee, init_fee, royalty_address, royalty_fee):
     # Template vars.
     seller_address_tmpl = Tmpl.Addr(seller_address)
@@ -71,6 +74,9 @@ def approval_program(seller_address, platform_address, asset_id, asset_price, pl
         ESCROW = Gtxn[4].sender()
         return And(
             *verify_group_of_txns(6),
+
+            # The buyer and escrow accounts should be different.
+            BUYER != ESCROW,
 
             # Buyer pays seller.
             Gtxn[0].type_enum() == TxnType.Payment,
