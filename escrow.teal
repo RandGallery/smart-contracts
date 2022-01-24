@@ -242,6 +242,10 @@ gtxn 5 RekeyTo
 global ZeroAddress
 ==
 &&
+gtxn 0 Sender
+gtxn 4 Sender
+!=
+&&
 gtxn 0 TypeEnum
 int pay
 ==
