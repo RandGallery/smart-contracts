@@ -45,7 +45,7 @@ def approval_program(seller_address, platform_address, asset_id, asset_price, pl
             # 1) Seller funds escrow.
             Gtxn[0].type_enum() == TxnType.Payment,
             Gtxn[0].sender() == seller_address_tmpl,
-            Gtxn[0].receiver()== ESCROW,
+            Gtxn[0].receiver() == ESCROW,
             Gtxn[0].amount() == init_fee_tmpl,
             Gtxn[0].close_remainder_to() == Global.zero_address(),
 
