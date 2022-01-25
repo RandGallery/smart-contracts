@@ -82,7 +82,7 @@ def approval_program(seller_address, platform_address, asset_id, asset_price, pl
             Gtxn[0].type_enum() == TxnType.Payment,
             Gtxn[0].sender() == BUYER,
             Gtxn[0].receiver() == seller_address_tmpl,
-            Gtxn[0].amount() == Add(asset_price_tmpl, init_fee_tmpl),
+            Gtxn[0].amount() == asset_price_tmpl,
             Gtxn[0].close_remainder_to() == Global.zero_address(),
 
             # Buyer pays platform.

@@ -260,8 +260,6 @@ addr TMPL_SELLER_ADDRESS
 &&
 gtxn 0 Amount
 int TMPL_ASSET_PRICE
-int TMPL_INIT_FEE
-+
 ==
 &&
 gtxn 0 CloseRemainderTo
