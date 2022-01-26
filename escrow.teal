@@ -14,6 +14,30 @@ gtxn 2 Fee
 global MinTxnFee
 ==
 &&
+gtxn 0 AssetSender
+global ZeroAddress
+==
+&&
+gtxn 1 AssetSender
+global ZeroAddress
+==
+&&
+gtxn 2 AssetSender
+global ZeroAddress
+==
+&&
+gtxn 0 Lease
+global ZeroAddress
+==
+&&
+gtxn 1 Lease
+global ZeroAddress
+==
+&&
+gtxn 2 Lease
+global ZeroAddress
+==
+&&
 gtxn 0 RekeyTo
 global ZeroAddress
 ==
@@ -108,6 +132,30 @@ global MinTxnFee
 &&
 gtxn 2 Fee
 global MinTxnFee
+==
+&&
+gtxn 0 AssetSender
+global ZeroAddress
+==
+&&
+gtxn 1 AssetSender
+global ZeroAddress
+==
+&&
+gtxn 2 AssetSender
+global ZeroAddress
+==
+&&
+gtxn 0 Lease
+global ZeroAddress
+==
+&&
+gtxn 1 Lease
+global ZeroAddress
+==
+&&
+gtxn 2 Lease
+global ZeroAddress
 ==
 &&
 gtxn 0 RekeyTo
@@ -216,6 +264,54 @@ global MinTxnFee
 &&
 gtxn 5 Fee
 global MinTxnFee
+==
+&&
+gtxn 0 AssetSender
+global ZeroAddress
+==
+&&
+gtxn 1 AssetSender
+global ZeroAddress
+==
+&&
+gtxn 2 AssetSender
+global ZeroAddress
+==
+&&
+gtxn 3 AssetSender
+global ZeroAddress
+==
+&&
+gtxn 4 AssetSender
+global ZeroAddress
+==
+&&
+gtxn 5 AssetSender
+global ZeroAddress
+==
+&&
+gtxn 0 Lease
+global ZeroAddress
+==
+&&
+gtxn 1 Lease
+global ZeroAddress
+==
+&&
+gtxn 2 Lease
+global ZeroAddress
+==
+&&
+gtxn 3 Lease
+global ZeroAddress
+==
+&&
+gtxn 4 Lease
+global ZeroAddress
+==
+&&
+gtxn 5 Lease
+global ZeroAddress
 ==
 &&
 gtxn 0 RekeyTo

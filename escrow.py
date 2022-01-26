@@ -28,10 +28,18 @@ def approval_program(seller_address, platform_address, asset_id, asset_price, pl
         for i in range(size):
             assertions.append(Gtxn[i].fee() == Global.min_txn_fee())
 
-        # Verify rekeys are NOT happening.
+        # Prevent clawbacks.
+        for i in range(size):
+            assertions.append(Gtxn[i].asset_sender() == Global.zero_address())
+
+        # Prevent leases.
+        for i in range(size):
+            assertions.append(Gtxn[i].lease() == Global.zero_address())
+
+        # Prevent rekeys.
         for i in range(size):
             assertions.append(Gtxn[i].rekey_to() == Global.zero_address())
-        
+
         return assertions
 
     """
