@@ -2,7 +2,7 @@ import sys
 from pyteal import *
 
 """
-Helps people sell 1/1 indivisible NFTs.
+Helps people offer assets for Algos.
 """
 def approval_program(seller_address, platform_address, asset_id, asset_price, platform_fee, init_fee, royalty_address, royalty_fee):
     # Template vars.
@@ -43,12 +43,15 @@ def approval_program(seller_address, platform_address, asset_id, asset_price, pl
         return assertions
 
     """
-    Seller lists an NFT.
+    Seller offers asset.
     """
-    def seller_lists_nft_condition():
+    def seller_offers_asset():
         ESCROW = Gtxn[0].receiver()
         return And(
             *verify_group_of_txns(size = 3),
+
+            # Escrow address is unique.
+            ESCROW != seller_address_tmpl,
 
             # 1) Seller funds escrow.
             Gtxn[0].type_enum() == TxnType.Payment,
@@ -75,16 +78,17 @@ def approval_program(seller_address, platform_address, asset_id, asset_price, pl
         )
 
     """
-    Buyer purchases an NFT.
+    Buyer accepts offer.
     """
-    def buyer_purchases_nft_condition():
+    def buyer_accepts_offer():
         BUYER = Gtxn[0].sender()
         ESCROW = Gtxn[4].sender()
         return And(
-            *verify_group_of_txns(6),
+            *verify_group_of_txns(size = 6),
 
-            # The buyer and escrow accounts should be different.
-            BUYER != ESCROW,
+            # Escrow address is unique.
+            ESCROW != BUYER,
+            ESCROW != seller_address_tmpl,
 
             # Buyer pays seller.
             Gtxn[0].type_enum() == TxnType.Payment,
@@ -132,12 +136,15 @@ def approval_program(seller_address, platform_address, asset_id, asset_price, pl
         )
 
     """
-    Seller unlists an NFT.
+    Seller withdraws offer.
     """
-    def seller_unlists_nft():
+    def seller_withdraws_offer():
         ESCROW = Gtxn[1].sender()
         return And(
-            *verify_group_of_txns(3),
+            *verify_group_of_txns(size = 3),
+
+            # Escrow address is unique.
+            ESCROW != seller_address_tmpl,
 
             # Seller accepts ASA.
             Gtxn[0].type_enum() == TxnType.AssetTransfer,
@@ -164,9 +171,9 @@ def approval_program(seller_address, platform_address, asset_id, asset_price, pl
         )
 
     program = Cond(
-        [seller_lists_nft_condition(), Approve()],
-        [seller_unlists_nft(), Approve()],
-        [buyer_purchases_nft_condition(), Approve()],
+        [seller_offers_asset(), Approve()],
+        [seller_withdraws_offer(), Approve()],
+        [buyer_accepts_offer(), Approve()],
     )
 
     return compileTeal(program, Mode.Signature, version=5)

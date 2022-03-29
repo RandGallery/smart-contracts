@@ -50,6 +50,10 @@ gtxn 2 RekeyTo
 global ZeroAddress
 ==
 &&
+gtxn 0 Receiver
+addr TMPL_SELLER_ADDRESS
+!=
+&&
 gtxn 0 TypeEnum
 int pay
 ==
@@ -169,6 +173,10 @@ global ZeroAddress
 gtxn 2 RekeyTo
 global ZeroAddress
 ==
+&&
+gtxn 1 Sender
+addr TMPL_SELLER_ADDRESS
+!=
 &&
 gtxn 0 TypeEnum
 int axfer
@@ -338,8 +346,12 @@ gtxn 5 RekeyTo
 global ZeroAddress
 ==
 &&
-gtxn 0 Sender
 gtxn 4 Sender
+gtxn 0 Sender
+!=
+&&
+gtxn 4 Sender
+addr TMPL_SELLER_ADDRESS
 !=
 &&
 gtxn 0 TypeEnum
