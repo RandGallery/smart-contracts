@@ -1,53 +1,5 @@
 #pragma version 5
 global GroupSize
-int 1
-==
-gtxn 0 Fee
-global MinTxnFee
-==
-&&
-gtxn 0 AssetSender
-global ZeroAddress
-==
-&&
-gtxn 0 Lease
-global ZeroAddress
-==
-&&
-gtxn 0 RekeyTo
-global ZeroAddress
-==
-&&
-gtxn 0 Sender
-addr TMPL_BUYER_ADDRESS
-!=
-&&
-gtxn 0 TypeEnum
-int pay
-==
-&&
-gtxn 0 Sender
-gtxn 0 Sender
-==
-&&
-gtxn 0 Receiver
-addr TMPL_BUYER_ADDRESS
-==
-&&
-gtxn 0 Amount
-int TMPL_ASSET_PRICE
-int TMPL_ROYALTY_FEE
-+
-int TMPL_PLATFORM_FEE
-+
-==
-&&
-gtxn 0 CloseRemainderTo
-addr TMPL_PLATFORM_ADDRESS
-==
-&&
-bnz main_l6
-global GroupSize
 int 2
 ==
 gtxn 0 Fee
@@ -82,7 +34,7 @@ gtxn 1 RekeyTo
 global ZeroAddress
 ==
 &&
-gtxn 0 Receiver
+gtxn 1 Sender
 addr TMPL_BUYER_ADDRESS
 !=
 &&
@@ -95,17 +47,11 @@ addr TMPL_BUYER_ADDRESS
 ==
 &&
 gtxn 0 Receiver
-gtxn 0 Receiver
+addr TMPL_BUYER_ADDRESS
 ==
 &&
 gtxn 0 Amount
-int TMPL_INIT_FEE
-int TMPL_ASSET_PRICE
-+
-int TMPL_ROYALTY_FEE
-+
-int TMPL_PLATFORM_FEE
-+
+int 0
 ==
 &&
 gtxn 0 CloseRemainderTo
@@ -113,30 +59,30 @@ global ZeroAddress
 ==
 &&
 gtxn 1 TypeEnum
-int axfer
+int pay
 ==
 &&
 gtxn 1 Sender
+gtxn 1 Sender
+==
+&&
+gtxn 1 Receiver
 addr TMPL_BUYER_ADDRESS
 ==
 &&
-gtxn 1 AssetReceiver
-addr TMPL_BUYER_ADDRESS
+gtxn 1 Amount
+int TMPL_ASSET_PRICE
+int TMPL_ROYALTY_FEE
++
+int TMPL_PLATFORM_FEE
++
 ==
 &&
-gtxn 1 AssetAmount
-int 0
+gtxn 1 CloseRemainderTo
+addr TMPL_PLATFORM_ADDRESS
 ==
 &&
-gtxn 1 XferAsset
-int TMPL_ASSET_ID
-==
-&&
-gtxn 1 AssetCloseTo
-global ZeroAddress
-==
-&&
-bnz main_l5
+bnz main_l4
 global GroupSize
 int 3
 ==
@@ -260,14 +206,11 @@ gtxn 2 AssetCloseTo
 global ZeroAddress
 ==
 &&
-bnz main_l4
+bnz main_l3
 err
+main_l3:
+int 1
+return
 main_l4:
-int 1
-return
-main_l5:
-int 1
-return
-main_l6:
 int 1
 return

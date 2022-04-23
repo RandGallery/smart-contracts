@@ -43,33 +43,6 @@ def approval_program(buyer_address, platform_address, asset_id, asset_price, pla
         return assertions
 
     """
-    Buyer offers Algos.
-    """
-    def buyer_offers_algos():
-        ESCROW = Gtxn[0].receiver()
-        return And(
-            *verify_group_of_txns(size = 2),
-
-            # Escrow address is unique.
-            ESCROW != buyer_address_tmpl,
-
-            # 1) Buyer funds escrow.
-            Gtxn[0].type_enum() == TxnType.Payment,
-            Gtxn[0].sender() == buyer_address_tmpl,
-            Gtxn[0].receiver() == ESCROW,
-            Gtxn[0].amount() == init_fee_tmpl + asset_price_tmpl + royalty_fee_tmpl + platform_fee_tmpl,
-            Gtxn[0].close_remainder_to() == Global.zero_address(),
-
-            # 2) Buyer accepts ASA.
-            Gtxn[1].type_enum() == TxnType.AssetTransfer,
-            Gtxn[1].sender() == buyer_address_tmpl,
-            Gtxn[1].asset_receiver() == buyer_address_tmpl,
-            Gtxn[1].asset_amount() == Int(0),
-            Gtxn[1].xfer_asset() == asset_id_tmpl,
-            Gtxn[1].asset_close_to() == Global.zero_address(),
-        )
-
-    """
     Seller accepts offer.
     """
     def seller_accepts_offer():
@@ -109,24 +82,30 @@ def approval_program(buyer_address, platform_address, asset_id, asset_price, pla
     Buyer withdraws offer.
     """
     def buyer_withdraws_offer():
-        ESCROW = Gtxn[0].sender()
+        ESCROW = Gtxn[1].sender()
         return And(
-            *verify_group_of_txns(size = 1),
+            *verify_group_of_txns(size = 2),
 
             # Escrow address is unique.
             ESCROW != buyer_address_tmpl,
 
-            # Escrow refunds buyer.
+            # Buyer approves txn group.
             Gtxn[0].type_enum() == TxnType.Payment,
-            Gtxn[0].sender() == ESCROW,
+            Gtxn[0].sender() == buyer_address_tmpl,
             Gtxn[0].receiver() == buyer_address_tmpl,
-            Gtxn[0].amount() == asset_price_tmpl + royalty_fee_tmpl + platform_fee_tmpl,
-            Gtxn[0].close_remainder_to() == platform_address_tmpl,
+            Gtxn[0].amount() == Int(0),
+            Gtxn[0].close_remainder_to() == Global.zero_address(),
+
+            # Escrow refunds buyer.
+            Gtxn[1].type_enum() == TxnType.Payment,
+            Gtxn[1].sender() == ESCROW,
+            Gtxn[1].receiver() == buyer_address_tmpl,
+            Gtxn[1].amount() == asset_price_tmpl + royalty_fee_tmpl + platform_fee_tmpl,
+            Gtxn[1].close_remainder_to() == platform_address_tmpl,
         )
 
     program = Cond(
         [buyer_withdraws_offer(), Approve()],
-        [buyer_offers_algos(), Approve()],
         [seller_accepts_offer(), Approve()],
     )
 
