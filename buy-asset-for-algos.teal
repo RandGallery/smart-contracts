@@ -1,0 +1,205 @@
+#pragma version 5
+global GroupSize
+int 5
+==
+gtxn 0 Fee
+global MinTxnFee
+==
+&&
+gtxn 1 Fee
+global MinTxnFee
+==
+&&
+gtxn 2 Fee
+global MinTxnFee
+==
+&&
+gtxn 3 Fee
+global MinTxnFee
+==
+&&
+gtxn 4 Fee
+global MinTxnFee
+==
+&&
+gtxn 0 AssetSender
+global ZeroAddress
+==
+&&
+gtxn 1 AssetSender
+global ZeroAddress
+==
+&&
+gtxn 2 AssetSender
+global ZeroAddress
+==
+&&
+gtxn 3 AssetSender
+global ZeroAddress
+==
+&&
+gtxn 4 AssetSender
+global ZeroAddress
+==
+&&
+gtxn 0 Lease
+global ZeroAddress
+==
+&&
+gtxn 1 Lease
+global ZeroAddress
+==
+&&
+gtxn 2 Lease
+global ZeroAddress
+==
+&&
+gtxn 3 Lease
+global ZeroAddress
+==
+&&
+gtxn 4 Lease
+global ZeroAddress
+==
+&&
+gtxn 0 RekeyTo
+global ZeroAddress
+==
+&&
+gtxn 1 RekeyTo
+global ZeroAddress
+==
+&&
+gtxn 2 RekeyTo
+global ZeroAddress
+==
+&&
+gtxn 3 RekeyTo
+global ZeroAddress
+==
+&&
+gtxn 4 RekeyTo
+global ZeroAddress
+==
+&&
+gtxn 0 CloseRemainderTo
+global ZeroAddress
+==
+&&
+gtxn 1 CloseRemainderTo
+global ZeroAddress
+==
+&&
+gtxn 2 CloseRemainderTo
+global ZeroAddress
+==
+&&
+gtxn 3 CloseRemainderTo
+global ZeroAddress
+==
+&&
+gtxn 4 CloseRemainderTo
+global ZeroAddress
+==
+&&
+gtxn 0 FirstValid
+int TMPL_DEADLINE
+<
+&&
+gtxn 0 TypeEnum
+int axfer
+==
+&&
+gtxn 0 Sender
+addr TMPL_BUYER_ADDRESS
+==
+&&
+gtxn 0 AssetReceiver
+addr TMPL_BUYER_ADDRESS
+==
+&&
+gtxn 0 AssetAmount
+int 0
+==
+&&
+gtxn 0 XferAsset
+int TMPL_ASSET_ID
+==
+&&
+gtxn 0 AssetCloseTo
+global ZeroAddress
+==
+&&
+gtxn 1 TypeEnum
+int pay
+==
+&&
+gtxn 1 Sender
+addr TMPL_BUYER_ADDRESS
+==
+&&
+gtxn 1 Receiver
+addr TMPL_CREATOR_ADDRESS
+==
+&&
+gtxn 1 Amount
+int TMPL_CREATOR_CUT
+==
+&&
+gtxn 2 TypeEnum
+int pay
+==
+&&
+gtxn 2 Sender
+addr TMPL_BUYER_ADDRESS
+==
+&&
+gtxn 2 Receiver
+addr TMPL_SELLER_ADDRESS
+==
+&&
+gtxn 2 Amount
+int TMPL_SELLER_CUT
+==
+&&
+gtxn 3 TypeEnum
+int pay
+==
+&&
+gtxn 3 Sender
+addr TMPL_BUYER_ADDRESS
+==
+&&
+gtxn 3 Receiver
+addr TMPL_PLATFORM_ADDRESS
+==
+&&
+gtxn 3 Amount
+int TMPL_PLATFORM_CUT
+==
+&&
+gtxn 4 TypeEnum
+int axfer
+==
+&&
+gtxn 4 Sender
+addr TMPL_BUYER_ADDRESS
+!=
+&&
+gtxn 4 AssetReceiver
+addr TMPL_BUYER_ADDRESS
+==
+&&
+gtxn 4 AssetAmount
+int 1
+==
+&&
+gtxn 4 XferAsset
+int TMPL_ASSET_ID
+==
+&&
+bnz main_l2
+err
+main_l2:
+int 1
+return
